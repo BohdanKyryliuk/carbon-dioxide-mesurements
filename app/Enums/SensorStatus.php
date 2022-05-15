@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum Status : string
+enum SensorStatus : string
 {
     case OK = 'OK';
     case WARN = 'WARN';
