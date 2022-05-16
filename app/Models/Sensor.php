@@ -31,8 +31,8 @@ class Sensor extends Model
         return $this->hasMany(Alert::class);
     }
 
-    public function mesurement(): HasMany
+    public function measurement(): HasMany
     {
-        return $this->hasMany(Mesurement::class);
+        return $this->hasMany(Measurement::class);
     }
 }

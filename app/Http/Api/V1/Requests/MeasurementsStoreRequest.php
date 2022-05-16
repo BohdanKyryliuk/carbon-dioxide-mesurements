@@ -4,7 +4,7 @@ namespace App\Http\Api\V1\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MesurementsStoreRequest extends FormRequest
+class MeasurementsStoreRequest extends FormRequest
 {
     public function rules(): array
     {

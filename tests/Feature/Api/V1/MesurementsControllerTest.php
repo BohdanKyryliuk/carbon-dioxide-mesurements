@@ -5,7 +5,7 @@ it('saves on store', function () {
     $time = $this->faker()->date('Y-m-d\TH:i:sP');
     $uuid = $this->faker()->uuid();
 
-    $response = $this->post(route('api.mesurements', [$uuid]), [
+    $response = $this->post(route('api.measurements', [$uuid]), [
         'co2' => $co2,
         'time' => $time,
     ]);

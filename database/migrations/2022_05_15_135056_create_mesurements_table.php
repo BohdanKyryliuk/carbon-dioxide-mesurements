@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('mesurements', function (Blueprint $table) {
+        Schema::create('measurements', function (Blueprint $table) {
             $table->id();
             $table->foreignId('sensor_id')->constrained()->restrictOnDelete()->cascadeOnUpdate();
             $table->smallInteger('co2');
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mesurements');
+        Schema::dropIfExists('measurements');
     }
 };

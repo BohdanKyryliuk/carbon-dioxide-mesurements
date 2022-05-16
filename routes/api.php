@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Api\V1\Controllers\MesurementsController;
+use App\Http\Api\V1\Controllers\MeasurementsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::name('api.')
     ->prefix('v1')
     ->group(function () {
-        Route::post('/sensors/{uuid}/mesurements', [MesurementsController::class, 'store'])
+        Route::post('/sensors/{uuid}/mesurements', [MeasurementsController::class, 'store'])
             ->whereUuid('uuid')
-            ->name('mesurements');
+            ->name('measurements');
     });
