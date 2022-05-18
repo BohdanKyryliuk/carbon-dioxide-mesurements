@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Api\V1\Controllers\AlertsController;
 use App\Http\Api\V1\Controllers\MeasurementsController;
 use App\Http\Api\V1\Controllers\SensorMetricsController;
 use App\Http\Api\V1\Controllers\SensorStatusController;
@@ -30,4 +31,8 @@ Route::name('api.')
         Route::get('/sensors/{uuid}/metrics', [SensorMetricsController::class, 'index'])
             ->whereUuid('uuid')
             ->name('metrics');
+
+        Route::get('/sensors/{uuid}/alerts', [AlertsController::class, 'index'])
+            ->whereUuid('uuid')
+            ->name('alerts');
     });
