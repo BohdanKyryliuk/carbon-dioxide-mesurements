@@ -44,11 +44,7 @@ class UpdateSensorStatusAction
         if ($currentSensorStatus?->name == SensorStatus::ALERT) {
             // When the sensor reaches to status ALERT it stays in this state until it receives 3
             // consecutive measurements lower than 2000; then it moves to OK
-            if ($safeMeasurements->count() == ConsecutiveMeasurements::COUNT->value) {
-                $status = SensorStatus::OK;
-            } else {
-                $status = SensorStatus::ALERT;
-            }
+            $status = $safeMeasurements->count() == ConsecutiveMeasurements::COUNT->value ? SensorStatus::OK : SensorStatus::ALERT;
         }
 
         Status::updateOrCreate(['sensor_id' => $measurement->sensor_id], ['name' => $status]);
