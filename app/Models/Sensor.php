@@ -36,6 +36,15 @@ class Sensor extends Model
         return $this->hasMany(Measurement::class);
     }
 
+    public function lastThreeMeasurements(): Collection|array
+    {
+        return $this->measurement()
+            ->select('co2', 'time')
+            ->latest()
+            ->limit(ConsecutiveMeasurements::COUNT->value)
+            ->get();
+    }
+
     public function measurementMaxLast30Days(): int
     {
         return $this->measurementLast30Days()

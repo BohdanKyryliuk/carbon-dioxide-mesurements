@@ -31,12 +31,4 @@ class Measurement extends Model
     {
         return $this->belongsTo(Sensor::class);
     }
-
-    public function scopeLastThreeMeasurements(): Collection|array
-    {
-        return self::query()
-            ->latest()
-            ->limit(ConsecutiveMeasurements::COUNT->value)
-            ->get(['co2', 'time']);
-    }
 }
