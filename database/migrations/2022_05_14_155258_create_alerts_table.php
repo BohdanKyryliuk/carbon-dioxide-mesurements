@@ -15,8 +15,8 @@ return new class () extends Migration {
         Schema::create('alerts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('sensor_id')->constrained()->restrictOnDelete()->cascadeOnUpdate();
-            $table->dateTime('start_time');
-            $table->dateTime('end_time');
+            $table->timestamp('start_time');
+            $table->timestamp('end_time')->nullable();
             $table->smallInteger('mesurement1');
             $table->smallInteger('mesurement2');
             $table->smallInteger('mesurement3');
