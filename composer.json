@@ -2,7 +2,10 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.1",
@@ -57,7 +60,20 @@
         "lint": "php-cs-fixer fix",
         "analyse": "phpstan analyse",
         "mess": "phpmd . ansi phpmd.ruleset.xml --exclude 'tests/*,vendor/*'",
-        "test": "pest"
+        "test": "pest",
+        "suite": [
+            "@lint",
+            "@analyse",
+            "@mess",
+            "@test"
+        ]
+    },
+    "scripts-descriptions": {
+        "analyse": "Runs static analysis",
+        "lint": "Correct the code style of all PHP files",
+        "mess": "Checks for potential code problems",
+        "suite": "Run the full CI suite of checks",
+        "test": "Run the test suite"
     },
     "extra": {
         "laravel": {
