@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Dyrynda\Database\Support\BindsOnUuid;
 use Dyrynda\Database\Support\GeneratesUuid;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasRelationships;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -21,13 +20,6 @@ class Sensor extends Model
     protected $fillable = [
         'uuid',
     ];
-
-    public function scopeByUuid(Builder $builder, string $uuid): Model|null
-    {
-        return $builder
-            ->whereUuid($uuid)
-            ->first();
-    }
 
     public function status(): HasOne
     {
