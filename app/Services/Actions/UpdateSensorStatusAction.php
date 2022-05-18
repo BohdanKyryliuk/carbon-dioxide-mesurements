@@ -20,6 +20,7 @@ class UpdateSensorStatusAction
         $status = SensorStatus::OK;
         $currentSensorStatus = $sensor->status()->first();
 
+        /** @var \Illuminate\Database\Eloquent\Collection $lastThreeMeasurements */
         $lastThreeMeasurements = $sensor->measurement()->lastThreeMeasurements();
         $criticalMeasurements = $lastThreeMeasurements->filter(
             fn (Measurement $measurement) => CarbonDioxideCriticalLevel::isCritical($measurement->co2)
