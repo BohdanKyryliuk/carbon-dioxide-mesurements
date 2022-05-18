@@ -18,4 +18,9 @@ class Controller extends BaseController
     {
         return response()->json(['OK'], 201);
     }
+
+    protected function notFound(): JsonResponse
+    {
+        return response()->json(['title' => 'not found'], 404);
+    }
 }
