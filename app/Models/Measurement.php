@@ -17,7 +17,7 @@ class Measurement extends Model
     protected $fillable = [
         'sensor_id',
         'co2',
-        'time'
+        'time',
     ];
 
     protected $casts = [

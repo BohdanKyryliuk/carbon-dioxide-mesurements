@@ -10,7 +10,7 @@ class MeasurementsStoreRequest extends FormRequest
     {
         return [
             'co2' => ['required', 'integer', 'between:350,10000'],
-            'time' => ['required', 'date_format:Y-m-d\TH:i:sP']
+            'time' => ['required', 'date_format:Y-m-d\TH:i:sP'],
         ];
     }
 }
