@@ -17,6 +17,6 @@ class MeasurementsController extends Controller
     ): JsonResponse {
         $storeMeasurements->onQueue()->execute($uuid, new MeasurementsDTO($request->validated()));
 
-        return response()->json(['OK'], 201);
+        return $this->created();
     }
 }
