@@ -24,6 +24,7 @@
         "nunomaduro/larastan": "^2.1",
         "pestphp/pest": "^1.21",
         "pestphp/pest-plugin-laravel": "^1.2",
+        "phpmd/phpmd": "^2.12",
         "phpunit/phpunit": "^9.5.10",
         "spatie/laravel-ignition": "^1.0"
     },
@@ -55,6 +56,7 @@
         ],
         "lint": "php-cs-fixer fix",
         "analyse": "phpstan analyse",
+        "mess": "phpmd . ansi phpmd.ruleset.xml --exclude 'tests/*,vendor/*'",
         "test": "pest"
     },
     "extra": {
