@@ -10,9 +10,7 @@ class SensorMetricsController extends Controller
     public function index(string $uuid)
     {
         /** @var \App\Models\Sensor|null $sensor */
-        $sensor = Sensor::query()
-            ->whereUuid($uuid)
-            ->first();
+        $sensor = Sensor::byUuid($uuid);
 
         if (empty($sensor)) {
             return $this->notFound();

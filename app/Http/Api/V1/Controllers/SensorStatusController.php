@@ -10,9 +10,8 @@ class SensorStatusController extends Controller
 {
     public function index(string $uuid): JsonResponse
     {
-        $sensor = Sensor::query()
-            ->whereUuid($uuid)
-            ->first();
+        /** @var \App\Models\Sensor|null $sensor */
+        $sensor = Sensor::byUuid($uuid);
 
         if (empty($sensor)) {
             return $this->notFound();
