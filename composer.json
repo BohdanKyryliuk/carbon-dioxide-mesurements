@@ -16,7 +16,6 @@
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "spatie/data-transfer-object": "^3.7",
-        "spatie/laravel-query-builder": "^5.0",
         "spatie/laravel-queueable-action": "^2.14"
     },
     "require-dev": {
