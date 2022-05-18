@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Enums\ConsecutiveMeasurements;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Concerns\HasRelationships;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

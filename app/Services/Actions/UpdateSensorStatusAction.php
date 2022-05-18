@@ -14,11 +14,18 @@ class UpdateSensorStatusAction
 {
     use QueueableAction;
 
+    public function __construct(
+        private readonly CreateAlertAction $createAlert,
+        private readonly UpdateAlertAction $updateAlert,
+    ) {
+    }
+
     public function execute(Measurement $measurement, Sensor $sensor): void
     {
         // OK
         $status = SensorStatus::OK;
         $currentSensorStatus = $sensor->status()->first();
+        $currentStatus = $currentSensorStatus?->name;
 
         /** @var \Illuminate\Database\Eloquent\Collection $lastThreeMeasurements */
         $lastThreeMeasurements = $sensor->lastThreeMeasurements();
@@ -39,12 +46,21 @@ class UpdateSensorStatusAction
         // 2000 the sensor status should be set to ALERT
         if ($criticalMeasurements->count() == ConsecutiveMeasurements::COUNT->value) {
             $status = SensorStatus::ALERT;
+
+            if ($currentStatus != SensorStatus::ALERT) {
+                $this->createAlert->onQueue()->execute($sensor);
+            }
         }
 
-        if ($currentSensorStatus?->name == SensorStatus::ALERT) {
+        if ($currentStatus == SensorStatus::ALERT) {
             // When the sensor reaches to status ALERT it stays in this state until it receives 3
             // consecutive measurements lower than 2000; then it moves to OK
-            $status = $safeMeasurements->count() == ConsecutiveMeasurements::COUNT->value ? SensorStatus::OK : SensorStatus::ALERT;
+            $isOkay = $safeMeasurements->count() == ConsecutiveMeasurements::COUNT->value;
+            if ($isOkay) {
+                $this->updateAlert->onQueue()->execute($sensor, $safeMeasurements->first()->time);
+            }
+
+            $status = $isOkay ? SensorStatus::OK : SensorStatus::ALERT;
         }
 
         Status::updateOrCreate(['sensor_id' => $measurement->sensor_id], ['name' => $status]);
