@@ -12,9 +12,7 @@ class UpdateAlertAction
 
     public function execute(Sensor $sensor, Carbon $endTime): void
     {
-        $latestAlert = $sensor->latestAlert();
-
-        $latestAlert->update([
+        $sensor->latestAlert()->update([
             'end_time' => $endTime,
         ]);
     }
