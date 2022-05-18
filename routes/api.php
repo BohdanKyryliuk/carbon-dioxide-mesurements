@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Api\V1\Controllers\MeasurementsController;
+use App\Http\Api\V1\Controllers\SensorMetricsController;
 use App\Http\Api\V1\Controllers\SensorStatusController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,4 +26,8 @@ Route::name('api.')
         Route::get('/sensors/{uuid}', [SensorStatusController::class, 'index'])
             ->whereUuid('uuid')
             ->name('status');
+
+        Route::get('/sensors/{uuid}/metrics', [SensorMetricsController::class, 'index'])
+            ->whereUuid('uuid')
+            ->name('metrics');
     });

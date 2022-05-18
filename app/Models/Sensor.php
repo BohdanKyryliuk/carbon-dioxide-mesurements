@@ -35,4 +35,23 @@ class Sensor extends Model
     {
         return $this->hasMany(Measurement::class);
     }
+
+    public function measurementMaxLast30Days(): int
+    {
+        return $this->measurementLast30Days()
+            ->max('co2');
+    }
+
+    public function measurementAVGLast30Days(): int
+    {
+        return $this->measurementLast30Days()
+            ->avg('co2');
+    }
+
+    private function measurementLast30Days(): HasMany
+    {
+        return $this->measurement()
+            ->select('co2')
+            ->where('time', '>', now()->subDays(30));
+    }
 }
