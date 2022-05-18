@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\ConsecutiveMeasurements;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Concerns\HasRelationships;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -28,5 +30,13 @@ class Measurement extends Model
     public function sensor(): BelongsTo
     {
         return $this->belongsTo(Sensor::class);
+    }
+
+    public function scopeLastThreeMeasurements(): Collection|array
+    {
+        return self::query()
+            ->latest()
+            ->limit(ConsecutiveMeasurements::COUNT->value)
+            ->get(['co2', 'time']);
     }
 }

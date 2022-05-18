@@ -11,10 +11,16 @@ class StoreMeasurementsAction
 {
     use QueueableAction;
 
+    public function __construct(private readonly UpdateSensorStatusAction $updateSensorStatus)
+    {
+    }
+
     public function execute(string $uuid, MeasurementsDTO $measurementsDTO): void
     {
         $sensor = Sensor::firstOrCreate(['uuid' => $uuid]);
 
-        Measurement::create($measurementsDTO->all() + ['sensor_id' => $sensor->id]);
+        $measurement = Measurement::create($measurementsDTO->all() + ['sensor_id' => $sensor->id]);
+
+        $this->updateSensorStatus->onQueue()->execute($measurement, $sensor);
     }
 }
