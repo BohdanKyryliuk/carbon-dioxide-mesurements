@@ -47,7 +47,7 @@ class Sensor extends Model
     {
         return $this->measurement()
             ->select('co2', 'time')
-            ->latest()
+            ->latest('time')
             ->limit(ConsecutiveMeasurements::COUNT->value)
             ->get();
     }
