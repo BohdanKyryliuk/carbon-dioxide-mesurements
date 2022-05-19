@@ -23,6 +23,19 @@ $ sail up -d
 $ sail artisan migrate
 ```
 
+## Redis queues
+
+The app uses built in [Laravel queues](https://laravel.com/docs/9.x/queues)
+
+To run queues in Redis, just set up your local env variable:
+```shell
+QUEUE_CONNECTION=redis
+```
+and run [Laravel Horizon](https://laravel.com/docs/9.x/horizon#introduction):
+```shell
+$ sail artisan horizon
+```
+
 ## Testing
 
 ### Run the test suite
