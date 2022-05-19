@@ -11,8 +11,8 @@ class AlertResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'startTime' => $this->start_time,
-            'endTime' => $this->end_time,
+            'startTime' => $this->start_time->toAtomString(),
+            'endTime' => $this->end_time->toAtomString(),
             'mesurement1' => $this->mesurement1,
             'mesurement2' => $this->mesurement2,
             'mesurement3' => $this->mesurement3,
