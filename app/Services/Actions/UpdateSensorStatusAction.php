@@ -23,6 +23,7 @@ class UpdateSensorStatusAction
     public function execute(Measurement $measurement, Sensor $sensor): void
     {
         // TODO: split the logic of Status determining to separate services
+        // TODO: maybe add some observers on models Measurement and Status create/update Alert
         // OK
         $status = SensorStatus::OK;
         $currentSensorStatus = $sensor->status()->first();
